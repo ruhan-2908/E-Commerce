@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Products")
 public class Product {
@@ -35,6 +37,9 @@ public class Product {
     private Integer stock;
 
     private Integer numberOfReviews = 0;
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<ProductImage> images;
 
     public Product(Long id, String name, Integer stock, String seller, Double ratings, String description, Double price, Integer numberOfReviews) {
         this.id = id;
