@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class ProductService {
-//    @Autowired
+    @Autowired
     private ProductRepository productRepository;
 
     public List<Product> getAllProducts()
