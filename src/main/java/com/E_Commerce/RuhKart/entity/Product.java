@@ -39,7 +39,12 @@ public class Product {
     private Integer numberOfReviews = 0;
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "product_id")
     private List<ProductImage> images;
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "product_id")
+    private List<ProductReview> reviews;
 
     public Product(Long id, String name, Integer stock, String seller, Double ratings, String description, Double price, Integer numberOfReviews) {
         this.id = id;
