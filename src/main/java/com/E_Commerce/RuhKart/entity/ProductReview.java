@@ -1,5 +1,6 @@
 package com.E_Commerce.RuhKart.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -20,6 +21,7 @@ public class ProductReview {
 
     @ManyToOne()
     @JoinColumn(name = "product_id")
+//    @JsonIgnore
     private Product product;
 
     public ProductReview(Long id, Double rating, String comment) {

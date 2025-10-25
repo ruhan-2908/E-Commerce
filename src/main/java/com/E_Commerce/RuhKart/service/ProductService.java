@@ -1,5 +1,6 @@
 package com.E_Commerce.RuhKart.service;
 
+import com.E_Commerce.RuhKart.dto.ProductDto;
 import com.E_Commerce.RuhKart.dto.ProductReviewDto;
 import com.E_Commerce.RuhKart.entity.Product;
 import com.E_Commerce.RuhKart.entity.ProductReview;
@@ -34,7 +35,18 @@ public class ProductService {
         response.put("totalProducts",products.getTotalElements());
         return response;
     }
-
+    public void convertTODto(Product product)
+    {
+        ProductDto productDto = new ProductDto();
+        productDto.setId(product.getId());
+        productDto.setCategory(product.getCategory());
+        productDto.setDescription(product.getDescription());
+        productDto.setName(product.getName());
+        productDto.setPrice(product.getPrice());
+        productDto.setRatings(product.getRatings());
+        productDto.setReviews(product.getReviews());
+        productDto.setNumberOfReviews(product.getNumberOfReviews());
+    }
     public Product getProductById(Long id)
     {
         return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found with the id " + id));

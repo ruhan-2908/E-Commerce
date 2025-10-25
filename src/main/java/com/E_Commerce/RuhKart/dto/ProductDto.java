@@ -1,6 +1,7 @@
-package com.E_Commerce.RuhKart.entity;
+package com.E_Commerce.RuhKart.dto;
 
-
+import com.E_Commerce.RuhKart.entity.ProductImage;
+import com.E_Commerce.RuhKart.entity.ProductReview;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,24 +9,18 @@ import jakarta.validation.constraints.PositiveOrZero;
 
 import java.util.List;
 
-@Entity
-@Table(name = "Products")
-public class Product {
+public class ProductDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column(nullable = false)
-    @NotBlank(message = "Name field is Required")
+
     private String name;
 
-    @Column(nullable = false)
-    @NotNull(message = "Price field is Required")
-    @PositiveOrZero(message = "Value must be zero or greater than zero")
+
     private Double price;
 
-    @Column(nullable = true)
+
     private String description;
 
 
@@ -33,21 +28,19 @@ public class Product {
 
     private Double ratings = 0.0;
 
-    @NotBlank(message = "Seller field is required")
+
     private String seller;
 
-    @NotNull(message = "Stock field is required")
+
     private Integer stock;
 
     private Integer numberOfReviews = 0;
 
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "product_id")
+
     private List<ProductImage> images;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @JoinColumn(name = "product_id")
+
     private List<ProductReview> reviews;
 
     public Product() {
@@ -145,5 +138,4 @@ public class Product {
     public void setNumberOfReviews(Integer numberOfReviews) {
         this.numberOfReviews = numberOfReviews;
     }
-
 }
