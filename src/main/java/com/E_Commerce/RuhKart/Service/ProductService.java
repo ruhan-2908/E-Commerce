@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -25,5 +26,12 @@ public class ProductService {
         response.put("totalProducts",products.getTotalElements());
         return response;
     }
+
+    public Product getProductById(Long id)
+    {
+        return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found with the id " + id));
+    }
+
+
 }
 

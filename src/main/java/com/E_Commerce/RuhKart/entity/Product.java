@@ -28,6 +28,9 @@ public class Product {
     @Column(nullable = true)
     private String description;
 
+
+    private String category;
+
     private Double ratings = 0.0;
 
     @NotBlank(message = "Seller field is required")
@@ -37,6 +40,7 @@ public class Product {
     private Integer stock;
 
     private Integer numberOfReviews = 0;
+
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "product_id")
@@ -50,13 +54,15 @@ public class Product {
         super();
     }
 
-    public Product(Long id, String name, Integer stock, String seller, Double ratings, String description, Double price) {
+    public Product(Long id, String name, Integer stock, String seller, Double ratings, String description, String category, Double price) {
+        super();
         this.id = id;
         this.name = name;
         this.stock = stock;
         this.seller = seller;
         this.ratings = ratings;
         this.description = description;
+        this.category= category;
         this.price = price;
     }
     public Long getId() {
@@ -89,6 +95,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Double getRatings() {
