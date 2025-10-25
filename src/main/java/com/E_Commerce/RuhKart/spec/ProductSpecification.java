@@ -41,5 +41,13 @@ public class ProductSpecification {
         return(root,query,cb) ->
                 cb.or(cb.like(root.get("name"),"%" +keyword.toLowerCase()+ "%"), cb.like(root.get("description"),"%"+keyword.toLowerCase() +"%"));
     }
-
+    public static Specification<Product> ratingGreaterThan(Double ratings)
+    {
+        if(ratings == null)
+        {
+            return  null;
+        }
+        return (root,query,cb) ->
+                cb.greaterThanOrEqualTo(root.get("ratings"),ratings);q
+    }
 }

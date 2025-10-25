@@ -57,7 +57,7 @@ public class ProductService {
 
         if(ratings != null )
         {
-            spec = (spec == null) ? ProductSpecification.
+            spec = (spec == null) ? ProductSpecification.ratingGreaterThan(ratings) : spec.and(ProductSpecification.ratingGreaterThan(ratings));
         }
         if (spec == null) {
             return productRepository.findAll();
