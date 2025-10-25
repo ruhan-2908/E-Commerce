@@ -32,4 +32,14 @@ public class ProductSpecification {
             return cb.between(root.get("price"),min,max);
         };
     }
+    public static Specification<Product> hasNameorDescriptionLike(String keyword)
+    {
+        if(keyword==null|| keyword.isEmpty())
+        {
+            return null;
+        }
+        return(root,query,cb) ->
+                cb.or(cb.like(root.get("name"),"%" +keyword.toLowerCase()+ "%"), cb.like(root.get("description"),"%"+keyword.toLowerCase() +"%"));
+    }
+
 }

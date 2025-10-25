@@ -35,7 +35,7 @@ public class ProductService {
         return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found with the id " + id));
     }
 
-    public List<Product> searchProducts(String category, Double minPrice, Double maxPrice, String keyword)
+    public List<Product> searchProducts(String category, Double minPrice, Double maxPrice, String keyword,Double ratings)
     {
         Specification<Product> spec = null;
         if (category != null && !category.isEmpty()) {
@@ -52,14 +52,18 @@ public class ProductService {
         }
 
         if (keyword != null && !keyword.isEmpty()) {
-//            spec = (spec == null) ? ProductSpecification.hasKeyword(keyword) : spec.and(ProductSpecification.hasKeyword(keyword));
-            spec = null;
+            spec = (spec == null) ? ProductSpecification.hasNameorDescriptionLike(keyword) : spec.and(ProductSpecification.hasNameorDescriptionLike(keyword));
         }
 
-
+        if(ratings != null )
+        {
+            spec = (spec == null) ? ProductSpecification.
+        }
         if (spec == null) {
             return productRepository.findAll();
         }
+
+
 
         return productRepository.findAll(spec);
     }

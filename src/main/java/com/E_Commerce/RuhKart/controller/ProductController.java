@@ -30,7 +30,7 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public List<Product> searchProducts(@RequestParam(required = false) String category, @RequestParam(required = false) Double minPrice,@RequestParam(required = false) Double maxPrice, @RequestParam(required = false) String keyword)
+    public List<Product> searchProducts(@RequestParam(required = false) String category, @RequestParam(required = false) Double minPrice,@RequestParam(required = false) Double maxPrice, @RequestParam(required = false) String keyword,@RequestParam Double ratings)
     {
 //        if(minPrice == null)
 //        {
@@ -40,6 +40,6 @@ public class ProductController {
 //        {
 //            maxPrice = Double.MAX_VALUE;
 //        }
-        return productService.searchProducts(category,minPrice,maxPrice,keyword);
+        return productService.searchProducts(category,minPrice,maxPrice,keyword,ratings);
     }
 }
