@@ -4,6 +4,7 @@ import com.E_Commerce.RuhKart.dto.ProductReviewDto;
 import com.E_Commerce.RuhKart.entity.Product;
 import com.E_Commerce.RuhKart.entity.ProductReview;
 import com.E_Commerce.RuhKart.repository.ProductRepository;
+import com.E_Commerce.RuhKart.repository.ProductReviewRepository;
 import com.E_Commerce.RuhKart.spec.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,9 @@ import java.util.Map;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductReviewRepository productReviewRepository;
 
     public Map<String, Object> getAllProducts(int page , int size)
     {
@@ -76,6 +80,7 @@ public class ProductService {
         review.setComment(reviewDTO.getComment());
         review.setRating(reviewDTO.getRating());
         review.setProduct(product);
+        productReviewRepository.save(review);
     }
 }
 
