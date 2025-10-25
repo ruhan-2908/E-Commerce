@@ -1,6 +1,8 @@
-package com.E_Commerce.RuhKart.Service;
+package com.E_Commerce.RuhKart.service;
 
+import com.E_Commerce.RuhKart.dto.ProductReviewDto;
 import com.E_Commerce.RuhKart.entity.Product;
+import com.E_Commerce.RuhKart.entity.ProductReview;
 import com.E_Commerce.RuhKart.repository.ProductRepository;
 import com.E_Commerce.RuhKart.spec.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -66,6 +67,15 @@ public class ProductService {
 
 
         return productRepository.findAll(spec);
+    }
+
+    public void addReview(ProductReviewDto reviewDTO) {
+
+        Product product = productRepository.findById(reviewDTO.getProductId()).orElseThrow(() -> new RuntimeException("Product not found"));
+        ProductReview review = new ProductReview();
+        review.setComment(reviewDTO.getComment());
+        review.setRating(reviewDTO.getRating());
+        review.setProduct(product);
     }
 }
 

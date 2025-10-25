@@ -48,6 +48,6 @@ public class ProductSpecification {
             return  null;
         }
         return (root,query,cb) ->
-                cb.greaterThanOrEqualTo(root.get("ratings"),ratings);q
+                cb.greaterThanOrEqualTo(root.get("ratings"),ratings);
     }
 }

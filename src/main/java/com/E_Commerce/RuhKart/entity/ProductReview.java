@@ -1,14 +1,12 @@
 package com.E_Commerce.RuhKart.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
 @Entity
 public class ProductReview {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,14 +14,30 @@ public class ProductReview {
 
     @Min(value = 1)
     @Max(value = 5)
-    private Integer rating;
+    private Double rating;
 
     private String comment;
 
-    public ProductReview(Long id, Integer rating, String comment) {
+    @ManyToOne()
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    public ProductReview(Long id, Double rating, String comment) {
         this.id = id;
         this.rating = rating;
         this.comment = comment;
+    }
+
+    public ProductReview() {
+        super();
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Long getId() {
@@ -34,11 +48,11 @@ public class ProductReview {
         this.id = id;
     }
 
-    public Integer getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(Integer rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
