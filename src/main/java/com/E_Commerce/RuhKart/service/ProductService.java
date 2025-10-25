@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -30,12 +31,13 @@ public class ProductService {
     {
         Pageable pageable = PageRequest.of(page,size);
         Page<Product> products =productRepository.findAll(pageable);
+        List<ProductDto> productDtos = products.stream().map(this::convertTODto).collect(Collectors.toList());
         Map<String,Object> response= new HashMap<>();
-        response.put("products",products.getContent());
+        response.put("products",productDtos);
         response.put("totalProducts",products.getTotalElements());
         return response;
     }
-    public void convertTODto(Product product)
+    public ProductDto convertTODto(Product product)
     {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
@@ -46,6 +48,10 @@ public class ProductService {
         productDto.setRatings(product.getRatings());
         productDto.setReviews(product.getReviews());
         productDto.setNumberOfReviews(product.getNumberOfReviews());
+
+        productDto.setReviews(product.getReviews());
+
+        return productDto;
     }
     public Product getProductById(Long id)
     {

@@ -43,11 +43,11 @@ public class ProductDto {
 
     private List<ProductReview> reviews;
 
-    public Product() {
+    public ProductDto() {
         super();
     }
 
-    public Product(Long id, String name, Integer stock, String seller, Double ratings, String description, String category, Double price) {
+    public ProductDto(Long id, String name, Integer stock, String seller, Double ratings, String description, String category, Double price) {
         super();
         this.id = id;
         this.name = name;
