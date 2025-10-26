@@ -34,7 +34,7 @@ public class ProductDto {
 
 
 
-    private List<ProductImage> images;
+    private List<ProductImageDto> images;
 
 
     private List<ProductReviewDto> reviews;
@@ -53,6 +53,14 @@ public class ProductDto {
         this.description = description;
         this.category= category;
         this.price = price;
+    }
+
+    public List<ProductImageDto> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ProductImageDto> images) {
+        this.images = images;
     }
 
     public List<ProductReviewDto> getReviews() {

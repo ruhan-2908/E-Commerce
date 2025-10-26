@@ -18,7 +18,10 @@ public class ProductImage {
         this.url = url;
         this.publicId = publicId;
     }
-
+    public ProductImage()
+    {
+        super();
+    }
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;

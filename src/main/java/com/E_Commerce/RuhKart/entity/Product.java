@@ -68,6 +68,14 @@ public class Product {
         this.images = productImages.stream().map(url -> new ProductImage(url,this)).collect(Collectors.toList());
     }
 
+    public List<ProductImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ProductImage> images) {
+        this.images = images;
+    }
+
     public List<ProductReview> getReviews() {
         return reviews;
     }

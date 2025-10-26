@@ -1,6 +1,7 @@
 package com.E_Commerce.RuhKart.service;
 
 import com.E_Commerce.RuhKart.dto.ProductDto;
+import com.E_Commerce.RuhKart.dto.ProductImageDto;
 import com.E_Commerce.RuhKart.dto.ProductReviewDto;
 import com.E_Commerce.RuhKart.entity.Product;
 import com.E_Commerce.RuhKart.entity.ProductReview;
@@ -56,6 +57,13 @@ public class ProductService {
             return reviewDto;
         }).collect(Collectors.toList());
         productDto.setReviews(reviewDtos);
+
+
+        List<ProductImageDto> productImageDtos = product.getImages().stream().map(image -> {
+            ProductImageDto productImageDto = new ProductImageDto(image.getUrl());
+            return productImageDto;
+        }).collect(Collectors.toList());
+        productDto.setImages(productImageDtos);
         return productDto;
     }
     public Product getProductById(Long id)
