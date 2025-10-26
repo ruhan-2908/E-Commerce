@@ -2,6 +2,7 @@ package com.E_Commerce.RuhKart.service;
 
 
 import com.E_Commerce.RuhKart.dto.CreateOrderRequest;
+import com.E_Commerce.RuhKart.dto.OrderCreated;
 import com.E_Commerce.RuhKart.dto.OrderItemDto;
 import com.E_Commerce.RuhKart.entity.Order;
 import com.E_Commerce.RuhKart.entity.OrderItem;
@@ -20,7 +21,7 @@ public class OrderService {
     private OrderRepository orderRepository;
     @Autowired
     private ProductRepository productRepository;
-    public Order createOrder(CreateOrderRequest orderRequest)
+    public OrderCreated createOrder(CreateOrderRequest orderRequest)
     {
         Order order = new Order();
         double totalItemsAmount = 0;
@@ -43,7 +44,13 @@ public class OrderService {
         double totalAmount = totalItemsAmount + taxAmount;
         order.setTotalAmount(totalAmount);
         order.setTaxAmount(taxAmount);
-        order.setReferenceId(UUID.randomUUID().toString());
-        return orderRepository.save(order);
+        String refId = UUID.randomUUID().toString();
+        orderRepository.save(order);
+        return new OrderCreated(refId);
+    }
+
+    public Order getOrder(String referenceId)
+    {
+        return orderRepository.findByReferenceId(referenceId).orElseThrow(() -> new RuntimeException("No product with reference id"));
     }
 }
