@@ -66,7 +66,7 @@ public class Product {
         this.price = price;
     }
 
-    public List<ProductReviewDto> getReviews() {
+    public List<ProductReview> getReviews() {
         return reviews;
     }
 

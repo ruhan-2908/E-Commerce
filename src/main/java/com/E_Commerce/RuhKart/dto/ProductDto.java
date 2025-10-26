@@ -37,7 +37,7 @@ public class ProductDto {
     private List<ProductImage> images;
 
 
-    private List<ProductReview> reviews;
+    private List<ProductReviewDto> reviews;
 
     public ProductDto() {
         super();
@@ -55,7 +55,7 @@ public class ProductDto {
         this.price = price;
     }
 
-    public List<ProductReview> getReviews() {
+    public List<ProductReviewDto> getReviews() {
         return reviews;
     }
 

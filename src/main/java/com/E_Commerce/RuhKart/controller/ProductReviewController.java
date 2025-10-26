@@ -3,6 +3,7 @@ package com.E_Commerce.RuhKart.controller;
 
 import com.E_Commerce.RuhKart.dto.ProductReviewDto;
 import com.E_Commerce.RuhKart.service.ProductService;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,11 @@ public class ProductReviewController {
     private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<?>  addReview(@RequestBody ProductReviewDto reviewDTO)
+    /*@Valid has been used to say server that ProductReviewDto class is a dto
+    and that has some validations to be considered , (since we didnt declare it as an entity,
+    the @Valid should be used here)
+     */
+    public ResponseEntity<?>  addReview(@RequestBody @Valid ProductReviewDto reviewDTO)
     {
         productService.addReview(reviewDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body("Review Added");
