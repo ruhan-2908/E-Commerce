@@ -28,6 +28,10 @@ public class OrderItem {
         this.product = product;
     }
 
+    public OrderItem() {
+        super();
+    }
+
     public String getName() {
         return name;
     }

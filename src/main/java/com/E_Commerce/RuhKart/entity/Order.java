@@ -2,8 +2,8 @@ package com.E_Commerce.RuhKart.entity;
 
 
 import jakarta.persistence.*;
-import org.hibernate.engine.internal.Cascade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,12 +15,12 @@ public class Order {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "order_id")
-    private List<OrderItem> orderItems;
+    private List<OrderItem> orderItems= new ArrayList<>();
     private Double totalItemsAmount;
     private Double taxAmount;
     private Double totalAmount;
     private String status;
-    private String orderNo;
+    private String referenceId;
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
@@ -62,11 +62,11 @@ public class Order {
         this.totalAmount = totalAmount;
     }
 
-    public String getOrderNo() {
-        return orderNo;
+    public String getReferenceId() {
+        return referenceId;
     }
 
-    public void setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
     }
 }
