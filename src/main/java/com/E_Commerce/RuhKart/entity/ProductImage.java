@@ -27,7 +27,7 @@ public class ProductImage {
     private Product product;
 
     public ProductImage(String url, Product product) {
-        this.url = "/uploads" + url;
+        this.url = "/uploads"+url;
         this.publicId = url;
         this.product = product;
     }
