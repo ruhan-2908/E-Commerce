@@ -2,10 +2,6 @@ package com.E_Commerce.RuhKart.dto;
 
 import com.E_Commerce.RuhKart.entity.ProductImage;
 import com.E_Commerce.RuhKart.entity.ProductReview;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
 
 import java.util.List;
 
@@ -63,7 +59,7 @@ public class ProductDto {
         return reviews;
     }
 
-    public void setReviews(List<ProductReview> reviews) {
+    public void setReviews(List<ProductReviewDto> reviews) {
         this.reviews = reviews;
     }
 

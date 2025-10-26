@@ -49,9 +49,15 @@ public class ProductService {
         productDto.setReviews(product.getReviews());
         productDto.setNumberOfReviews(product.getNumberOfReviews());
 
-        productDto.setReviews(product.getReviews());
-
-        return productDto;
+//        productDto.setReviews(product.getReviews());
+        List<ProductReviewDto> reviewDtos = product.getReviews().stream().map(review -> {
+            ProductReviewDto reviewDto = new ProductReviewDto();
+            reviewDto.setProductId(review.getId());
+            reviewDto.setComment(review.getComment());
+            reviewDto.setRating(review.getRating());
+            return reviewDto;
+        }).collect(Collectors.toList());
+        productDto.setReviews(reviewDtos);
     }
     public Product getProductById(Long id)
     {
