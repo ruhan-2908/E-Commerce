@@ -1,10 +1,7 @@
 package com.E_Commerce.RuhKart.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class ProductImage {
@@ -20,6 +17,16 @@ public class ProductImage {
         this.id = id;
         this.url = url;
         this.publicId = publicId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    public ProductImage(String url, Product product) {
+        this.url = "/uploads" + url;
+        this.publicId = url;
+        this.product = product;
     }
 
     public Long getId() {

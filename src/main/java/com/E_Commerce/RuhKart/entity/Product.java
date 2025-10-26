@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "Products")
@@ -54,7 +55,7 @@ public class Product {
         super();
     }
 
-    public Product(Long id, String name, Integer stock, String seller, Double ratings, String description, String category, Double price) {
+    public Product(Long id, String name, Integer stock, String seller, Double ratings, String description, String category, Double price, List<String> productImages) {
         super();
         this.id = id;
         this.name = name;
@@ -64,6 +65,7 @@ public class Product {
         this.description = description;
         this.category= category;
         this.price = price;
+        this.images = productImages.stream().map(url -> new ProductImage(url,this)).collect(Collectors.toList());
     }
 
     public List<ProductReview> getReviews() {
