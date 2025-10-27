@@ -1,13 +1,12 @@
-version : "3.8"
 services:
-  RuhKart-backend:
+  ruhkart-backend:
     build:
       context: "."
       dockerfile: "Dockerfile"
     restart: always
     ports:
       - "8080:8080"
-  RuhKart-db:
+  ruhkart-db:
     image: mysql:8.0
     restart: always
     environment:
